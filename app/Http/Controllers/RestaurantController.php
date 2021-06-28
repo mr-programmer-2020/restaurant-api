@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Restaurant;
+use App\Models\Client; 
 class RestaurantController extends Controller
 {
     
@@ -30,6 +31,12 @@ class RestaurantController extends Controller
             ], 500);
         }
 
+    }
+
+    public function getOrders($id)
+    {
+        $orders = Client::where('restaurant_id',$id)->first();
+        return response()->json($orders);
     }
 
 }

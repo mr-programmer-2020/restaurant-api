@@ -25,5 +25,8 @@ Route::post("/add-client",[ClientController::class,"orderTable"]);
 Route::post("/add-restauran",[RestaurantController::class,"addRestaurant"]);
 Route::post("/add-employee",[EmployeeController::class,"addEmploee"]);
 
-Route::post("/delete-order-by-manager/{employee_id}/{order-id}",[EmployeeController::class,"deleteOrderByManager"]);
+Route::delete("/delete-order-by-manager/{employee_id}/{order-id}",[EmployeeController::class,"deleteOrderByManager"]);
 Route::delete("/delete-order-by-employee/{employee_id}/{order_id}/{work_area_id}",[EmployeeController::class,"deleteOrderByEmployee"]);
+
+
+Route::get("/get-orders/{id}",[RestaurantController::class,"getOrders"]);
