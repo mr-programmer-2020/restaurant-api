@@ -16,10 +16,21 @@ class ClientController extends Controller
         $clients->bookingTime = $request->input('bookingTime');
         $clients->restaurant_id = $request->input('restaurant_id');
 
-        $clients->save();
-        return response()->json([
-            "message" => "client order created successfully"
-        ], 201);
+        $checkSeve = $clients->save();
+
+        if($checkSeve)
+        {
+            return response()->json([
+                "message" => "client order created successfully"
+            ], 201);
+        }
+        else
+        {
+            return response()->json([
+                "message" => "client order not  created"
+            ], 500);
+        }
+        
 
     }
 }

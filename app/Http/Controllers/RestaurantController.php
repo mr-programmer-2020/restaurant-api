@@ -12,11 +12,23 @@ class RestaurantController extends Controller
 
         $restaurants->restaurantName = $request->input('restaurantName');
         $restaurants->restaurantAddress = $request->input('restaurantAddress');
-        $restaurants->save();
-        
-        return response()->json([
-            "message" => "restaurant created successfully"
-        ], 201);
+        $checkSave = $restaurants->save();
+
+       
+
+        if($checkSave)
+        {
+            return response()->json([
+                "message" => "restaurant created successfully"
+            ], 201);
+        }
+        else
+        {
+            return response()->json([
+                "message" => "restaurant not created"
+            ], 500);
+        }
 
     }
+
 }
