@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ClientController;
+use App\Http\Controllers\EmployeeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,3 +16,7 @@ use App\Http\Controllers\ClientController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+//Route::get("/delete-order-by-manager/{employee_id}/{restaurant_id}",[EmployeeController::class,"deleteOrderByManager"]);
+

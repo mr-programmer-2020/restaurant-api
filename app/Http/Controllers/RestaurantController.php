@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Restaurant;
 class RestaurantController extends Controller
 {
+    
     public function addRestaurant(Request $request)
     {
         $restaurants = new Restaurant();

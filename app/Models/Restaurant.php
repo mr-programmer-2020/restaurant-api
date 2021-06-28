@@ -20,5 +20,11 @@ class Restaurant extends Model
     {
         return $this->hasMany(Client::class);
     }
+
+    public function employees()
+    {
+        return $this->hasMany(Employee::class);
+    }
+
 }
 
