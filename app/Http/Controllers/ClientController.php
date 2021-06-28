@@ -17,7 +17,9 @@ class ClientController extends Controller
         $clients->restaurant_id = $request->input('restaurant_id');
 
         $clients->save();
-        return response()->json($clients);
+        return response()->json([
+            "message" => "client order created successfully"
+        ], 201);
 
     }
 }

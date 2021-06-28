@@ -13,7 +13,7 @@ class RestaurantController extends Controller
         $restaurants->restaurantName = $request->input('restaurantName');
         $restaurants->restaurantAddress = $request->input('restaurantAddress');
         $restaurants->save();
-        //return response()->json($restaurants);
+        
         return response()->json([
             "message" => "restaurant created successfully"
         ], 201);
