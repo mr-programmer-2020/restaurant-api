@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Employee;
 use App\Models\Client; 
 use App\Models\Restaurant; 
+use DB;
 class EmployeeController extends Controller
 {
 
@@ -36,21 +37,19 @@ class EmployeeController extends Controller
 
     }
 
-    //this function not working well yet
+
+
+
+
     public function deleteOrderByManager($id,$order_id)
     {
-        
+
         $employee = Employee::findOrFail($id);
-
-        $client =  Client::select('restaurant_id')->where('restaurant_id', $order_id)->first();
-
         if($employee->id == 1)
         {
 
-           
-            $result = $client->delete();
-           
-
+            $result = DB::table('clients')->where('restaurant_id', $order_id)->delete();
+            
             if($result)
             {
                 
@@ -75,23 +74,19 @@ class EmployeeController extends Controller
 
     }
 
-
-
-    
-    //this function not working well yet
-    public function deleteOrderByEmployee($id,$order_id,$work_place_id)
+   
+    public function deleteOrderByEmployee($id,$work_place_id,$order_id)
     {
         $employee = Employee::findOrFail($id);
-        $client =  Client::select('restaurant_id')->where('restaurant_id', $order_id)->first();
-        $employeeWorkPlace =  Restaurant::select('id')->where('id', $work_place_id)->first();
-
+        $employeeWorkPlace =  Restaurant::findOrFail($work_place_id);
+   
         if($employee->id == 2)
         {
 
            if($employeeWorkPlace)
            {
-               $result = $client->delete(); 
-               
+              $result = DB::table('clients')->where('restaurant_id', $order_id)->delete();
+              
                if($result)
                {
                     return response()->json([

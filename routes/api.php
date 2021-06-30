@@ -27,10 +27,12 @@ Route::post("/add-restauran",[RestaurantController::class,"addRestaurant"]);
 Route::post("/add-employee",[EmployeeController::class,"addEmployee"]);
 Route::post("/add-table",[TableController::class,"addTable"]);
 
-Route::delete("/delete-order-by-manager/{employee_id}/{order-id}",[EmployeeController::class,"deleteOrderByManager"]);
-Route::delete("/delete-order-by-employee/{employee_id}/{order_id}/{work_area_id}",[EmployeeController::class,"deleteOrderByEmployee"]);
+Route::delete("/delete/{id}/{order_id}",[EmployeeController::class,"deleteOrderByManager"]);
+Route::delete("/delete-employee/{id}/{work_area_id}/{order_id}",[EmployeeController::class,"deleteOrderByEmployee"]);
 
 Route::get("/get-orders/{id}",[RestaurantController::class,"getOrders"]);
 Route::get("get-used-avarage",[RestaurantController::class,"getTotalUsedTabels"]);
 Route::get("get-free-avarage",[RestaurantController::class,"getTotalFreeTabels"]);
 Route::get("full-avarage",[RestaurantController::class,"getFullActivity"]);
+
+

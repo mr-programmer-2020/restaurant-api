@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RestaurantController;
+use App\Http\Controllers\EmployeeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,6 +16,4 @@ use App\Http\Controllers\RestaurantController;
 Route::get('/', function () {
     return view('welcome');
 });
-
-
 
