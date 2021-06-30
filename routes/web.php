@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\RestaurantController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,5 +18,4 @@ Route::get('/', function () {
 });
 
 
-//Route::get("/delete-order-by-manager/{employee_id}/{restaurant_id}",[EmployeeController::class,"deleteOrderByManager"]);
 

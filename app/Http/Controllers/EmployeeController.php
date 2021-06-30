@@ -9,7 +9,7 @@ use App\Models\Restaurant;
 class EmployeeController extends Controller
 {
 
-    public function addEmploee(Request $request)
+    public function addEmployee(Request $request)
     {
         $employees = new Employee();
 
@@ -74,6 +74,9 @@ class EmployeeController extends Controller
         }
 
     }
+
+
+
     
     //this function not working well yet
     public function deleteOrderByEmployee($id,$order_id,$work_place_id)

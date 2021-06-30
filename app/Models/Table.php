@@ -11,6 +11,8 @@ class Table extends Model
 
     protected $table = "tables";
     protected $fillable = [
-        'tablesQuantity',
+        'serialNumber',
+        'restaurant_id',
+        'quantity'
     ];
 }
