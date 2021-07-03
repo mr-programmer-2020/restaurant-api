@@ -44,8 +44,8 @@ class EmployeeController extends Controller
     public function deleteOrderByManager($id,$order_id)
     {
 
-        $employee = Employee::findOrFail($id);
-        if($employee->id == 1)
+        $employee = Employee::where('id',1)->firstOrFail();
+        if($employee)
         {
 
             $result = DB::table('clients')->where('restaurant_id', $order_id)->delete();
@@ -54,13 +54,13 @@ class EmployeeController extends Controller
             {
                 
                 return response()->json([
-                    "message" => "employee deleted successfully"
+                    "message" => "order deleted successfully"
                 ], 201);
             }
             else
             {
                 return response()->json([
-                    "message" => "employee not deleted"
+                    "message" => "order not deleted"
                 ], 500);
             }
             
@@ -68,7 +68,7 @@ class EmployeeController extends Controller
         else
         {
             return response()->json([
-                "message" => "employee not found"
+                "message" => "order not found"
             ], 500);
         }
 
@@ -77,10 +77,10 @@ class EmployeeController extends Controller
    
     public function deleteOrderByEmployee($id,$work_place_id,$order_id)
     {
-        $employee = Employee::findOrFail($id);
+        $employee = Employee::where('id',2)->firstOrFail();
         $employeeWorkPlace =  Restaurant::findOrFail($work_place_id);
    
-        if($employee->id == 2)
+        if($employee)
         {
 
            if($employeeWorkPlace)
@@ -90,13 +90,13 @@ class EmployeeController extends Controller
                if($result)
                {
                     return response()->json([
-                        "message" => "employee deleted successfully"
+                        "message" => "order deleted successfully"
                     ], 201);
                }     
                else
                {
                     return response()->json([
-                        "message" => "employee not deleted"
+                        "message" => "order not deleted"
                     ], 500);
                }
 
