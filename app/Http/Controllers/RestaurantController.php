@@ -104,18 +104,6 @@ class RestaurantController extends Controller
 
         
     }
-
-    public function getFullActivity()
-    {
-        $used = json_decode($this->getTotalUsedTabels());
-        $free = json_decode( $this->getTotalFreeTabels());
-
-        $fullActivity = $free - $used;
-        
-        return response()->json($fullActivity);      
-  
-    }
-
  
 }
 
