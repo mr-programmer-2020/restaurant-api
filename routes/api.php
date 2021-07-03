@@ -39,10 +39,12 @@ Route::group(['middleware' =>'web'],function(){
         
     Route::group(['prefix' => 'get'],function(){
     Route::get("orders/{id}",[RestaurantController::class,"getOrders"]);
-    Route::get("used-avarage",[RestaurantController::class,"getTotalUsedTabels"]);
-    Route::get("free-avarage",[RestaurantController::class,"getTotalFreeTabels"]);
-    Route::get("full-avarage",[RestaurantController::class,"getFullActivity"]);
+    Route::group(['prefix' => 'avarage'],function(){
+    Route::get("used",[RestaurantController::class,"getTotalUsedTabels"]);
+    Route::get("free",[RestaurantController::class,"getTotalFreeTabels"]);
+    Route::get("full",[RestaurantController::class,"getFullActivity"]);
     });
+    }); 
 
 
 });

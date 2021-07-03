@@ -40,7 +40,7 @@ class RestaurantController extends Controller
         return response()->json($orders);
     }
 
-    public function getAlltOrders()
+    public function getAllOrders()
     {
         $orders = Client::all();
         $orders = sizeof($orders);
@@ -63,7 +63,7 @@ class RestaurantController extends Controller
 
     public function getTotalUsedTabels()
     {
-        $usedTabels = $this->geAlltOrders();
+        $usedTabels = $this->getAllOrders();
         $allTabels = $this->getAllTabels();
 
         $usedAvarage = ($usedTabels / $allTabels) * 100 . " %";
@@ -84,7 +84,7 @@ class RestaurantController extends Controller
 
     public function getTotalFreeTabels()
     {
-        $usedTabels = $this->geAlltOrders();
+        $usedTabels = $this->getAllOrders();
         $allTabels = $this->getAllTabels();
 
         $freeTables = $allTabels - $usedTabels;
@@ -107,25 +107,13 @@ class RestaurantController extends Controller
 
     public function getFullActivity()
     {
-        $used = $this->getTotalUsedTabels();
-        $free = $this->getTotalFreeTabels();
+        $used = json_decode($this->getTotalUsedTabels());
+        $free = json_decode( $this->getTotalFreeTabels());
 
-      //  $fullActivity = $free - $used;
-
-        $fullActivityAvarage = ($free / $used) * 100 . " %";
+        $fullActivity = $free - $used;
         
-        if($fullActivityAvarage)
-        {
-            return response()->json($fullActivityAvarage);
-        }
-        else
-        {
-            return response()->json([
-                "message" => "table not created"
-            ], 500);
-        }
-
-        
+        return response()->json($fullActivity);      
+  
     }
 
  
