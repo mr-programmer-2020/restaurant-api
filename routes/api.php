@@ -21,22 +21,31 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['prefix' => 'add'],function(){
-Route::post("client",[ClientController::class,"orderTable"]);
-Route::post("restauran",[RestaurantController::class,"addRestaurant"]);
-Route::post("employee",[EmployeeController::class,"addEmployee"]);
-Route::post("table",[TableController::class,"addTable"]);
+
+Route::group(['middleware' =>'web'],function(){
+
+
+    Route::group(['prefix' => 'add'],function(){
+    Route::post("client",[ClientController::class,"orderTable"]);
+    Route::post("restauran",[RestaurantController::class,"addRestaurant"]);
+    Route::post("employee",[EmployeeController::class,"addEmployee"]);
+    Route::post("table",[TableController::class,"addTable"]);
+    });
+        
+    Route::group(['prefix' => 'delete'],function(){
+    Route::delete("manager/{id}/{order_id}",[EmployeeController::class,"deleteOrderByManager"]);
+    Route::delete("employee/{id}/{work_area_id}/{order_id}",[EmployeeController::class,"deleteOrderByEmployee"]);
+    });
+        
+    Route::group(['prefix' => 'get'],function(){
+    Route::get("orders/{id}",[RestaurantController::class,"getOrders"]);
+    Route::get("used-avarage",[RestaurantController::class,"getTotalUsedTabels"]);
+    Route::get("free-avarage",[RestaurantController::class,"getTotalFreeTabels"]);
+    Route::get("full-avarage",[RestaurantController::class,"getFullActivity"]);
+    });
+
+
 });
 
-Route::group(['prefix' => 'delete'],function(){
-Route::delete("manager/{id}/{order_id}",[EmployeeController::class,"deleteOrderByManager"]);
-Route::delete("employee/{id}/{work_area_id}/{order_id}",[EmployeeController::class,"deleteOrderByEmployee"]);
-});
 
-Route::group(['prefix' => 'get'],function(){
-Route::get("orders/{id}",[RestaurantController::class,"getOrders"]);
-Route::get("used-avarage",[RestaurantController::class,"getTotalUsedTabels"]);
-Route::get("free-avarage",[RestaurantController::class,"getTotalFreeTabels"]);
-Route::get("full-avarage",[RestaurantController::class,"getFullActivity"]);
-});
 
