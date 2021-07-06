@@ -5,21 +5,21 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Restaurant;
 use App\Models\Client; 
-use App\Models\Table; 
+use App\Models\Table;    
 use App\Http\Repository\RestaurantRepository;
 
 class RestaurantController extends Controller
 {
     
-    public function addRestaurant()
+    public function addRestaurant(Request $request)
     {
-        $addRestaurant = RestaurantRepository::addRestaurant();
+        $addRestaurant = RestaurantRepository::addRestaurant($request->restaurant_name,$request->restaurant_address);  
         return $addRestaurant;
     }
 
-    public function getAllOrders($id)
+    public function getAllOrders(Request $request)
     {
-        $getOrders = RestaurantRepository::getOrders($id);
+        $getOrders = RestaurantRepository::getOrders($request->id);
         return $getOrders;
     }
 

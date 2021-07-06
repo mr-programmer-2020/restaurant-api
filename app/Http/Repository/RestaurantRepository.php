@@ -8,17 +8,16 @@ use App\Models\Table;
 class RestaurantRepository 
 {
     
-    public static function addRestaurant(Request $request)
+    public static function addRestaurant($restaurant_name,$restaurant_address)
     {
-        $restaurants = new Restaurant();
-
-        $restaurants->restaurantName = $request->input('restaurant_name');
-        $restaurants->restaurantAddress = $request->input('restaurant_address');
-        $checkSave = $restaurants->save();
-
+        
+        $restaurant =  Restaurant::create([
+            'restaurant_name'       => $restaurant_name,
+            'restaurant_address'    => $restaurant_address,
+        ]);
        
 
-        if($checkSave)
+        if($restaurant)
         {
             return response()->json([
                 "message" => "restaurant created successfully"

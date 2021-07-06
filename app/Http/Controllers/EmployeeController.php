@@ -12,9 +12,9 @@ use App\Http\Repository\EmployeeRepository;
 class EmployeeController extends Controller
 {
     
-    public function addEmployee()
+    public function addEmployee(Request $request)
     {    
-        $addEmployee = EmployeeRepository::addEmployee();
+        $addEmployee = EmployeeRepository::addEmployee($request);
         return $addEmployee;
     }
 

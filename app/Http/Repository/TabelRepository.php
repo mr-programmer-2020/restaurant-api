@@ -6,16 +6,15 @@ use App\Models\Table;
 
 class TabelRepository 
 {
-    public static function addTable(Request $request)
+    public static function addTable($serial_number,$restaurant_id,$quantity)
     {
-        $tables = new Table();
+        $table =  Table::create([
+            'serial_number'    => $serial_number,
+            'restaurant_id'    => $restaurant_id,
+            'quantity'         => $quantity,
+        ]);
 
-        $tables->serialNumber = $request->input('serial_number');
-        $tables->restaurant_id = $request->input('restaurant_id');
-        $tables->quantity = $request->input('quantity');
-        $result = $tables->save();
-
-        if($result)
+        if($table)
         {
             return response()->json([
                 "message" => "table created successfully"

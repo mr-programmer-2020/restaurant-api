@@ -9,7 +9,7 @@ use DB;
 class EmployeeRepository
 {
 
-    public static function addEmployee(Request $request)
+    public static function addEmployee($role,$first_name,$second_name,$work_place,$restaurant_id)
     {
         $employees = new Employee();
 

@@ -8,10 +8,10 @@ use App\Http\Repository\TabelRepository;
 
 class TableController extends Controller
 {
-    public function addTable()
+    public function addTable(Request $request)
     {
-        $addtable = TabelRepository::addTable();
-        return $addTable;
+        $result = TabelRepository::addTable($request->serial_number,$request->restaurant_id,$request->quantity);
+        return $result;
     }
     
 }
