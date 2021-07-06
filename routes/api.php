@@ -21,7 +21,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
- // Route::post('clients/{client}/orders'. [OrderController::class, 'store']);
 
     Route::group(['prefix' => 'add'],function(){
         Route::post('clients/orders',[OrderController::class, 'create']);
@@ -36,7 +35,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     });
         
     Route::group(['prefix' => 'get'],function(){ 
-        Route::get("orders/{id}",[RestaurantController::class,"getOrders"]);
+        Route::get("orders/{id}",[RestaurantController::class,"getAllOrders"]);
         Route::group(['prefix' => 'avarage'],function(){
             Route::get("used",[RestaurantController::class,"getTotalUsedTabels"]);
             Route::get("free",[RestaurantController::class,"getTotalFreeTabels"]);

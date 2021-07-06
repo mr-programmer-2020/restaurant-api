@@ -15,8 +15,9 @@ class OrderController extends Controller
         try
         {
             DB::beginTransaction();
-            $order =   OrderRepository::create(); 
-            $client =  ClientRepository::create();
+            
+            OrderRepository::create(); 
+            ClientRepository::create();
             DB::commit(); 
             return response()->json( "order created successfully");
         }
