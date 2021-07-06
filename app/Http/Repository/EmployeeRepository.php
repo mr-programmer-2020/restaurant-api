@@ -14,9 +14,9 @@ class EmployeeRepository
         $employees = new Employee();
 
         $employees->role = $request->input('role');
-        $employees->firstName = $request->input('firstName');
-        $employees->secondName = $request->input('secondName');
-        $employees->workPlace = $request->input('workPlace');
+        $employees->firstName = $request->input('first_name');
+        $employees->secondName = $request->input('second_name');
+        $employees->workPlace = $request->input('work_place');
         $employees->restaurant_id = $request->input('restaurant_id');
 
         $checkSave = $employees->save();

@@ -12,8 +12,8 @@ class RestaurantRepository
     {
         $restaurants = new Restaurant();
 
-        $restaurants->restaurantName = $request->input('restaurantName');
-        $restaurants->restaurantAddress = $request->input('restaurantAddress');
+        $restaurants->restaurantName = $request->input('restaurant_name');
+        $restaurants->restaurantAddress = $request->input('restaurant_address');
         $checkSave = $restaurants->save();
 
        

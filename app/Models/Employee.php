@@ -12,9 +12,9 @@ class Employee extends Model
     protected $table = "employees";
     protected $fillable = [
         'role',
-        'firstName',
-        'secondName',
-        'workPlace',
+        'first_name',
+        'second_name',
+        'work_place',
         'restaurant_id'
     ];
 
@@ -25,4 +25,3 @@ class Employee extends Model
     }
     
 }
-
