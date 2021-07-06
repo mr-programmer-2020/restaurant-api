@@ -3,21 +3,24 @@
 namespace App\Http\Repository;
 use Illuminate\Http\Request;  
 use App\Models\Order;
+use App\Models\Restaurant;
 
 class OrderRepository
 {
-
-    public static function create(Request $request)
-    {
-        $orders = new Order();
     
-        $orders->restaurant_id = $request->input('restaurant_id');
-        $orders->table_id = $request->input('table_id');
-        $orders->client_id = $request->input('client_id');
-        $orders->booking_time = $request->input('booking_time');
-        
-        $orders->save();
+    public static function create($restaurant_id,$table_id,$client_id,$booking_time)
+    {
+        $order = new Order();
+        $restaurant = new Restaurant();
+        Order::create([
+            'restaurant_id' => $order->restaurant->save($restaurant),
+            'table_id'      => $table_id,
+            'client_id'     => $client_id,
+            'booking_time'  => $booking_time
+
+        ]);
         
     }
 
 }
+

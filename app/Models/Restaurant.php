@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Table;
 use App\Models\Employee;
 use App\Models\Client;
+use App\Models\Order;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -32,6 +33,10 @@ class Restaurant extends Model
     public function employees()
     {
         return $this->hasMany(Employee::class);
+    }
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
     }
 
 }
