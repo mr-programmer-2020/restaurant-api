@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Models\Table;
+use App\Models\Employee;
+use App\Models\Client;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -19,7 +21,7 @@ class Restaurant extends Model
     
     public function tables()
     {
-        $this->hasMany(Table::classs);
+        $this->hasMany(Table::class);
     }
 
     public function clients()
