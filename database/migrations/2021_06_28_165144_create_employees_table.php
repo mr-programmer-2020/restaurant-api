@@ -16,9 +16,9 @@ class CreateEmployeesTable extends Migration
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
             $table->integer('role');
-            $table->string('firstName');
-            $table->string('secondName');
-            $table->string('workPlace');
+            $table->string('first_tame');
+            $table->string('second_name');
+            $table->string('work_place');
             $table->integer('restaurant_id');
             $table->timestamps();
         });

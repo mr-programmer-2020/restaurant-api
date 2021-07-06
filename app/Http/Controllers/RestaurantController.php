@@ -6,103 +6,35 @@ use Illuminate\Http\Request;
 use App\Models\Restaurant;
 use App\Models\Client; 
 use App\Models\Table; 
+use App\Http\Repository\RestaurantRepository;
+
 class RestaurantController extends Controller
 {
     
-    public function addRestaurant(Request $request)
+    public function addRestaurant()
     {
-        $restaurants = new Restaurant();
-
-        $restaurants->restaurantName = $request->input('restaurantName');
-        $restaurants->restaurantAddress = $request->input('restaurantAddress');
-        $checkSave = $restaurants->save();
-
-       
-
-        if($checkSave)
-        {
-            return response()->json([
-                "message" => "restaurant created successfully"
-            ], 201);
-        }
-        else
-        {
-            return response()->json([
-                "message" => "restaurant not created"
-            ], 500);
-        }
-
+        $addRestaurant = RestaurantRepository::addRestaurant();
+        return $addRestaurant;
     }
 
-    public function getOrders($id)
+    public function getAllOrders($id)
     {
-        $orders = Client::where('restaurant_id',$id)->first();
-        return response()->json($orders);
+        $getOrders = RestaurantRepository::getOrders($id);
+        return $getOrders;
     }
 
-    public function getAllOrders()
-    {
-        $orders = Client::all();
-        $orders = sizeof($orders);
-        return $orders;
-        
-    }
 
-    public function getAllTabels()
-    {
-        $tabels =Table::select('quantity')->get();
-
-        $usedTabels = 0;
-        foreach($tabels as $tabel)
-        {
-            $usedTabels += $tabel['quantity'];
-        }
-
-        return $usedTabels;
-    }
 
     public function getTotalUsedTabels()
     {
-        $usedTabels = $this->getAllOrders();
-        $allTabels = $this->getAllTabels();
-
-        $usedAvarage = ($usedTabels / $allTabels) * 100 . " %";
-        
-        if($usedAvarage)
-        {
-            return response()->json($usedAvarage);
-        }
-        else
-        {
-            return response()->json([
-                "message" => "table not created"
-            ], 500);
-        }
-
-        
+       $usedTabels = RestaurantRepository::getTotalUsedTabels();
+        return $usedTabels;
     }
 
     public function getTotalFreeTabels()
     {
-        $usedTabels = $this->getAllOrders();
-        $allTabels = $this->getAllTabels();
-
-        $freeTables = $allTabels - $usedTabels;
-
-        $usedAvarage = ($freeTables / $allTabels) * 100 . " %";
-        
-        if($usedAvarage)
-        {
-            return response()->json($usedAvarage);
-        }
-        else
-        {
-            return response()->json([
-                "message" => "table not created"
-            ], 500);
-        }
-
-        
+        $freeTabels = RestaurantRepository::getTotalFreeTabels();
+        return $freeTabels;
     }
  
 }

@@ -10,12 +10,11 @@ class Client extends Model
     use HasFactory;
 
     protected $table = "clients";
+
     protected $fillable = [
-        'firstName',
-        'secondName',
-        'phoneNumber',
-        'bookingTime',
-        'restaurant_id'
+        'first_name',
+        'second_name',
+        'phone_number'
     ];
 
     public function restaurant()
