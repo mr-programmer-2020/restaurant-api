@@ -7,11 +7,14 @@ use App\Models\Restaurant;
 
 class OrderRepository
 {
-    
+
+    //not working yet problem with relation
     public static function create($restaurant_id,$table_id,$client_id,$booking_time)
     {
         $order = new Order();
+
         $restaurant = new Restaurant();
+     
         Order::create([
             'restaurant_id' => $order->restaurant->save($restaurant),
             'table_id'      => $table_id,

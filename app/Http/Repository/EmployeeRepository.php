@@ -11,17 +11,16 @@ class EmployeeRepository
 
     public static function addEmployee($role,$first_name,$second_name,$work_place,$restaurant_id)
     {
-        $employees = new Employee();
+      
+        $employees =  Employee::create([
+            'role'          => $role,
+            'first_name'    => $first_name,
+            'second_name'   => $second_name,
+            'work_place'    => $work_place,
+            'restaurant_id' => $restaurant_id
+        ]);
 
-        $employees->role = $request->input('role');
-        $employees->firstName = $request->input('first_name');
-        $employees->secondName = $request->input('second_name');
-        $employees->workPlace = $request->input('work_place');
-        $employees->restaurant_id = $request->input('restaurant_id');
-
-        $checkSave = $employees->save();
-
-        if($checkSave)
+        if($employees)
         {
             return response()->json([
                 "message" => "employee created successfully"
@@ -36,14 +35,14 @@ class EmployeeRepository
 
     }
 
-    public static function deleteOrderByManager($id,$order_id)
+    public static function deleteOrderByManager($id,$restaurant_id)
     {
 
         $employee = Employee::where('role',1)->firstOrFail();
         if($employee)
         {
 
-            $result = DB::table('clients')->where('restaurant_id', $order_id)->delete();
+            $result = DB::table('orders')->where('restaurant_id', $restaurant_id)->delete();
             
             if($result)
             {
@@ -69,7 +68,7 @@ class EmployeeRepository
 
     }
 
-    public static function deleteOrderByEmployee($id,$work_place_id,$order_id)
+    public static function deleteOrderByEmployee($id,$work_place_id,$restaurant_id)
     {
         $employee = Employee::where('role',2)->firstOrFail();
         $employeeWorkPlace =  Restaurant::findOrFail($work_place_id);
@@ -79,7 +78,7 @@ class EmployeeRepository
 
            if($employeeWorkPlace)
            {
-              $result = DB::table('clients')->where('restaurant_id', $order_id)->delete();
+              $result = DB::table('orders')->where('restaurant_id', $restaurant_id)->delete();
               
                if($result)
                {
