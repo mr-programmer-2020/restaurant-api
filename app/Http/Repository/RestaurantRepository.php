@@ -8,12 +8,12 @@ use App\Models\Table;
 class RestaurantRepository 
 {
     
-    public static function addRestaurant($restaurant_name,$restaurant_address)
+    public static function addRestaurant(array $data)
     {
         
         $restaurant =  Restaurant::create([
-            'restaurant_name'       => $restaurant_name,
-            'restaurant_address'    => $restaurant_address,
+            'restaurant_name'       => $data['restaurant_name'],
+            'restaurant_address'    => $data['restaurant_address'],
         ]);
        
 

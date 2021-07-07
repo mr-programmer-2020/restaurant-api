@@ -13,7 +13,9 @@ class RestaurantController extends Controller
     
     public function addRestaurant(Request $request)
     {
-        $addRestaurant = RestaurantRepository::addRestaurant($request->restaurant_name,$request->restaurant_address);  
+        $data = array();
+        $data = $request->all();
+        $addRestaurant = RestaurantRepository::addRestaurant($data);  
         return $addRestaurant;
     }
 

@@ -6,12 +6,12 @@ use App\Models\Table;
 
 class TabelRepository 
 {
-    public static function addTable($serial_number,$restaurant_id,$quantity)
+    public static function addTable(array $data)
     {
         $table =  Table::create([
-            'serial_number'    => $serial_number,
-            'restaurant_id'    => $restaurant_id,
-            'quantity'         => $quantity,
+            'serial_number'    => $data['serial_number'],
+            'restaurant_id'    => $data['restaurant_id'],
+            'quantity'         => $data['quantity'],
         ]);
 
         if($table)

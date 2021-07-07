@@ -10,7 +10,9 @@ class TableController extends Controller
 {
     public function addTable(Request $request)
     {
-        $result = TabelRepository::addTable($request->serial_number,$request->restaurant_id,$request->quantity);
+        $data = array();
+        $data = $request->all();
+        $result = TabelRepository::addTable($data);
         return $result;
     }
     
