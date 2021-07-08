@@ -6,6 +6,7 @@ use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\TableController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\UserController;
 /*
 | API Routes
 |--------------------------------------------------------------------------
@@ -20,6 +21,21 @@ use App\Http\Controllers\OrderController;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+
+// public routes
+Route::post("register",[UserController::class,'register']); 
+Route::post("login",[UserController::class,'login']); 
+
+// Protected routes
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::delete("manager/{id}/",[EmployeeController::class,"deleteOrderByManager"]);
+    Route::delete("employee/{id}/",[EmployeeController::class,"deleteOrderByEmployee"]);
+    Route::post("logout",[UserController::class,'logout']); 
+});
+
+
 
 
     Route::group(['prefix' => 'add'],function(){

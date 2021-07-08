@@ -7,11 +7,12 @@ use App\Models\Restaurant;
 use App\Models\Client; 
 use App\Models\Table;    
 use App\Http\Repository\RestaurantRepository;
+use App\Http\Requests\RestaurantRequest;
 
 class RestaurantController extends Controller
 {
     
-    public function addRestaurant(Request $request)
+    public function addRestaurant(RestaurantRequest $request)
     {
         $data = array();
         $data = $request->all();
@@ -19,7 +20,7 @@ class RestaurantController extends Controller
         return $addRestaurant;
     }
 
-    public function getAllOrders(Request $request)
+    public function getAllOrders(RestaurantRequest $request)
     {
         $getOrders = RestaurantRepository::getOrders($request->id);
         return $getOrders;

@@ -6,11 +6,12 @@ use Illuminate\Http\Request;
 use App\Http\Repository\OrderRepository;  
 use App\Http\Repository\ClientRepository;
 use DB;
+use App\Http\Requests\OrderRequest;
 
 class OrderController extends Controller
 {
 
-    public function create(Request $request)
+    public function create(OrderRequest $request)
     {
         try
         {
