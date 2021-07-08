@@ -5,13 +5,13 @@ use App\Models\Client;
 
 class ClientRepository 
 {
-    public static function create($first_name,$second_name,$phone_number)
+    public static function create(array $data)
     {
 
         $clients =  Client::create([
-            'first_name' => $first_name,
-            'second_name' => $second_name,
-            'phone_number' => $phone_number
+            'first_name'   => $data['first_name'],
+            'second_name'  => $data['second_name'],
+            'phone_number' => $data['phone_number']
         ]);
     }
 }

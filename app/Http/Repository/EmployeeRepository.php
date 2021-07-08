@@ -9,15 +9,15 @@ use DB;
 class EmployeeRepository
 {
 
-    public static function addEmployee($role,$first_name,$second_name,$work_place,$restaurant_id)
+    public static function addEmployee(array $data)
     {
       
         $employees =  Employee::create([
-            'role'          => $role,
-            'first_name'    => $first_name,
-            'second_name'   => $second_name,
-            'work_place'    => $work_place,
-            'restaurant_id' => $restaurant_id
+            'role'          => $data['role'],
+            'first_name'    => $data['first_name'],
+            'second_name'   => $data['second_name'],
+            'work_place'    => $data['work_place'],
+            'restaurant_id' => $data['restaurant_id']
         ]);
 
         if($employees)

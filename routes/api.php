@@ -23,7 +23,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
     Route::group(['prefix' => 'add'],function(){
-        Route::post('clients/orders',[OrderController::class, 'create']);
+        Route::post('orders/clients',[OrderController::class, 'create']);
         Route::post("restauran",[RestaurantController::class,"addRestaurant"]);
         Route::post("employee",[EmployeeController::class,"addEmployee"]);
         Route::post("table",[TableController::class,"addTable"]);

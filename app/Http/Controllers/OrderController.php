@@ -16,8 +16,10 @@ class OrderController extends Controller
         {
             DB::beginTransaction();
             
-            OrderRepository::create($request->restaurant_id,$request->table_id,$request->client_id,$request->booking_time); 
-            ClientRepository::create($request->first_name,$request->second_name,$request->phone_number);
+            OrderRepository::create($request->booking_time); 
+            $data = array();
+            $data = $request->all();
+            ClientRepository::create($data);
             DB::commit(); 
             return response()->json("order created successfully");
         }

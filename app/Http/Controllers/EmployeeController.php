@@ -14,8 +14,10 @@ class EmployeeController extends Controller
 {
     
     public function addEmployee(Request $request)
-    {    
-        $addEmployee = EmployeeRepository::addEmployee($request->role,$request->first_name,$request->second_name,$request->work_place,$request->restaurant_id);
+    {  
+        $data = array();
+        $data = $request->all();  
+        $addEmployee = EmployeeRepository::addEmployee($data);
         return $addEmployee;
     }
 

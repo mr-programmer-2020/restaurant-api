@@ -18,8 +18,14 @@ class Table extends Model
         'quantity'
     ];
 
-    public function restaurant(){
+    public function restaurant()
+    {
         $this->belongTo(Restaurant::class);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
     }
 
     
