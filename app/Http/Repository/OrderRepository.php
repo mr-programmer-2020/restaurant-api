@@ -10,7 +10,7 @@ class OrderRepository
 {
 
     //not working yet problem with relation
-    public static function create($booking_time)
+    public static function create(array $data)
     {
         $order = new Order();
         
@@ -19,14 +19,15 @@ class OrderRepository
         $client = new Client();
 
         Order::create([
-            'restaurant_id' => $order->restaurant()->save($restaurant),
-            'table_id'      => $order->table()->save($table),
-            'client_id'     => $order->client()->save($client),
-            'booking_time'  => $booking_time
+            'restaurant_id' => $data[$restaurant->orders()->save($order)],
+            'table_id'      => $data[$table->orders()->save($order)],
+            'client_id'     => $data[$client->orders()->save($order)],    
+            'booking_time'  => $data['booking_time']
 
         ]);
         
     }
 
 }
+
 

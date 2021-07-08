@@ -14,11 +14,13 @@ class OrderController extends Controller
     {
         try
         {
-            DB::beginTransaction();
-            
-            OrderRepository::create($request->booking_time); 
             $data = array();
             $data = $request->all();
+
+            DB::beginTransaction();
+            
+            OrderRepository::create($data); 
+            
             ClientRepository::create($data);
             DB::commit(); 
             return response()->json("order created successfully");
