@@ -35,14 +35,9 @@ class EmployeeRepository
 
     }
 
-    public static function deleteOrderByManager($id)
-    {
-
-        $employee = Employee::where('role',1)->firstOrFail();
-        if($employee)
-        {
-
-            $result = DB::table('orders')->where('restaurant_id', $id)->delete();
+    public static function deleteOrder($id)
+    {    
+        $result = DB::table('orders')->where('restaurant_id', $id)->delete();
             
             if($result)
             {
@@ -57,37 +52,9 @@ class EmployeeRepository
                     "message" => "order not deleted"
                 ], 500);
             }
-            
-        }
-
     }
 
-    public static function deleteOrderByEmployee($id)
-    {
-        $employee = Employee::where('role',2)->firstOrFail(); 
-   
-        if($employee)
-        {
-
-            $result = DB::table('orders')->where('restaurant_id', $restaurant_id)->delete();
-              
-            if($result)
-            {
-                 return response()->json([
-                     "message" => "order deleted successfully"
-                 ], 201);
-            }     
-            else
-            {
-                 return response()->json([
-                     "message" => "order not deleted"
-                 ], 500);
-            }
-
-            
-        }
-
-    }
+    
 
 
 }

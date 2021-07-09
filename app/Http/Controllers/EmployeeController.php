@@ -23,18 +23,10 @@ class EmployeeController extends Controller
     }
 
 
-    public function deleteOrderByManager(EmployeeRequest $request)
+    public function deleteOrder(EmployeeRequest $request)
     {
-        $deleteOrder = EmployeeRepository::deleteOrderByManager($request->id);
+        $deleteOrder = EmployeeRepository::deleteOrder($request->id);
         return $deleteOrder;
     }
-
-   
-    public function deleteOrderByEmployee(EmployeeRequest $request)
-    {
-        $deleteOrder = EmployeeRepository::deleteOrderByEmployee($request->id);
-        return $deleteOrder;
-    }
- 
    
 }

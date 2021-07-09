@@ -30,13 +30,6 @@ Route::post("login",[UserController::class,'login']);
 
 // Protected routes
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::delete("manager/{id}/",[EmployeeController::class,"deleteOrderByManager"]);
-    Route::delete("employee/{id}/",[EmployeeController::class,"deleteOrderByEmployee"]);
-    Route::post("logout",[UserController::class,'logout']); 
-});
-
-
-
 
     Route::group(['prefix' => 'add'],function(){
         Route::post('orders/clients',[OrderController::class, 'create']);
@@ -46,8 +39,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     });
         
     Route::group(['prefix' => 'delete'],function(){
-        Route::delete("manager/{id}/{order_id}",[EmployeeController::class,"deleteOrderByManager"]);
-        Route::delete("employee/{id}/{work_area_id}/{order_id}",[EmployeeController::class,"deleteOrderByEmployee"]);
+        Route::delete("order/{id}/",[EmployeeController::class,"deleteOrder"]); 
     });
         
     Route::group(['prefix' => 'get'],function(){ 
@@ -57,9 +49,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
             Route::get("free",[RestaurantController::class,"getTotalFreeTabels"]);
         });
     });
- 
 
-
-
-
-
+    Route::post("logout",[UserController::class,'logout']); 
+});

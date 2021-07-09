@@ -6,9 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-use DB;
 use App\Http\Requests\UserRequest;
-use App\Http\Resources\UserResource;
 
 class UserController extends Controller
 {
@@ -28,8 +26,6 @@ class UserController extends Controller
             'user' => $user,
             'token' => $token
         ];
-
-        return new UserResource($response);
  
     }
 
