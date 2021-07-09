@@ -48,16 +48,10 @@ class RestaurantRepository
 
     private static function getAllTabels()
     {
-        $tabels =Table::select('quantity')->get();
-
-        $usedTabels = 0;
-        foreach($tabels as $tabel)
-        {
-            $usedTabels += $tabel['quantity'];
-        }
-
-        return $usedTabels;
+        $tabels =Table::sum('quantity')->get();
+        return $tabels; 
     }
+
 
     public static function getTotalUsedTabels()
     {
